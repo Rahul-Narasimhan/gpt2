@@ -40,7 +40,6 @@ This project includes the following core components:
 
 ## Repository Structure
 
-```text
 gpt2_wiki_2m/
 │
 ├── gpt2_model.py      # GPT-2 style model architecture
@@ -50,14 +49,14 @@ gpt2_wiki_2m/
 ├── requirements.txt
 └── .gitignore
 
-Tech Stack
+## Tech Stack
 
 Python
 PyTorch
 NumPy
 tiktoken
 
-How to Run
+## How to Run
 1. Clone the repository
 
 git clone https://github.com/Rahul-Narasimhan/gpt2-wiki-2m.git
@@ -72,11 +71,11 @@ python train.py
 4. Generate text samples
 python sample.py
 
-Training Setup
+## Training Setup
 
 This model is being trained on a small Wikipedia-based dataset of roughly 2 million tokens as part of a learning-focused GPT-2 reproduction effort.
 
-Current setup includes:
+### Current setup includes:
 
 decoder-only transformer
 next-token prediction objective
@@ -84,7 +83,7 @@ train/validation split
 validation loss tracking during training
 generation using the trained model
 
-You can update this section later with exact hyperparameters such as:
+### hyperparameters
 
 number of layers
 number of heads
@@ -96,64 +95,42 @@ learning rate
 total training steps
 hardware used
 
-Results
+### Results
 
-This section will be updated with training outputs after runs are completed.
+TBU
 
 Planned additions:
 
 final training loss
-
 final validation loss
-
 loss curve plots
-
 training configuration summary
-
 example generated samples
 
-Why I Built This
+## Why I Built This
 
 I built this project to understand GPT-style autoregressive transformers beyond high-level APIs. Instead of relying only on prebuilt abstractions, I wanted to implement the architecture, training loop, and sampling pipeline manually in PyTorch so I could understand what each part is doing and how the full system fits together.
 
 This project is part of my broader effort to develop deeper practical understanding of large language models, training dynamics, and transformer internals.
 
-What I Learned
+## What I Learned
 
 Through this project, I am working to strengthen my understanding of:
-
 how token and positional embeddings interact
-
 how causal self-attention works
-
 why residual connections and layer normalization matter
-
 how logits are produced for next-token prediction
-
 how training and validation loops are structured
-
 how sampling works at inference time
-
 how to move from conceptual understanding to working PyTorch implementation
 
-Next Steps
+## Next Steps
 
 add checkpoint saving and loading
-
 improve logging and experiment tracking
-
 add training and validation loss curves to the README
-
 make hyperparameters configurable
-
 train on a larger dataset
-
 compare outputs across different training runs
-
 improve generation quality and sampling controls
 
-Notes
-
-This is a learning-driven implementation intended to build strong first-principles understanding of GPT-style language models. The goal is not to claim a production-scale GPT-2 reproduction, but to implement the main components honestly and understand them deeply.
-
-License
