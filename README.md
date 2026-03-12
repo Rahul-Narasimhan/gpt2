@@ -157,9 +157,9 @@ After training the model for 1 epoch, with 1173 steps, here are the train and va
 ![Validation Loss](assets/val_loss.png)
 
 Some observations from the plots.
-    - Train loss is noisy and high in the beginning, which is expected as the model moves from initialisation to learning phase
-    - Train loss starts at around ~11 , which is expected because -ln(1/vocab_size) = -ln(1/50304) = 10.82
-    - Train and Val loss remain fairly close, there is on obvious signs of overfitting
+  - Train loss is noisy and high in the beginning, which is expected as the model moves from initialisation to learning phase
+  - Train loss starts at around ~11 , which is expected because -ln(1/vocab_size) = -ln(1/50304) = 10.82
+  - Train and Val loss remain fairly close, there is on obvious signs of overfitting
 
 
 ## What I Learned
