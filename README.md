@@ -53,16 +53,15 @@ gpt2/
 
 ## Tech Stack
 
-Python
-PyTorch
-NumPy
-tiktoken
+- Python
+- PyTorch
+- NumPy
+- tiktoken
 
 ## How to Run
 1. Clone the repository
-
-git clone https://github.com/Rahul-Narasimhan/gpt2.git
-cd gpt2
+    git clone https://github.com/Rahul-Narasimhan/gpt2.git
+    cd gpt2
 
 2. Install dependencies
 pip install -r requirements.txt
@@ -107,13 +106,13 @@ I approached this project incrementally.
 
 2. I implemented the core building blocks step by step:
 
-• BPE tokenization
-• token embeddings
-• positional embeddings
-• attention mechanism
-• residual skip connections
-• layer normalization
-• feed-forward MLP blocks
+- BPE tokenization
+- token embeddings
+- positional embeddings
+- attention mechanism
+- residual skip connections
+- layer normalization
+- feed-forward MLP blocks
 
 3. After each component was added, I tested the implementation before moving to the next piece.
 
