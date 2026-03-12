@@ -165,18 +165,18 @@ Some observations from the plots.
 ## What I Learned
 
 Through this project, I am working to strengthen my understanding of:
-how token and positional embeddings interact
-how causal self-attention works
-why residual connections and layer normalization matter
-how logits are produced for next-token prediction
-how training and validation loops are structured
-how sampling works at inference time
-how to move from conceptual understanding to working PyTorch implementation
+    - how token and positional embeddings interact
+    - how causal self-attention works
+    - why residual connections and layer normalization matter
+    - how logits are produced for next-token prediction
+    - how training and validation loops are structured
+    - how sampling works at inference time
+    - how to move from conceptual understanding to working PyTorch implementation
 
 ## Next Steps
 
-Improve logging and experiment tracking
-Train on a larger dataset and understand better how hyperparamters interact with each other, not only about hyperparameters at the surface level like vocab_size, batch, but also hyperparamters of AdamW and so on.
-Compare outputs across different training runs
-Improve generation quality and sampling controls
+    - Improve logging and experiment tracking
+    - Train on a larger dataset and understand better how hyperparamters interact with each other, not only about hyperparameters at  the surface level like vocab_size, batch, but also hyperparamters of AdamW and so on.
+    - Compare outputs across different training runs
+    - Improve generation quality and sampling controls
 
