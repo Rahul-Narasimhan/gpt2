@@ -60,8 +60,8 @@ gpt2/
 
 ## How to Run
 1. Clone the repository
- - git clone https://github.com/Rahul-Narasimhan/gpt2.git
- - cd gpt2
+    - git clone https://github.com/Rahul-Narasimhan/gpt2.git
+    - cd gpt2
 
 2. Install dependencies
 pip install -r requirements.txt
