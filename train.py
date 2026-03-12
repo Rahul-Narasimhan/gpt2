@@ -27,7 +27,7 @@ max_length = 30
 max_lr = 6e-4
 min_lr = max_lr * 0.1
 warmup_steps = 10
-max_steps = 500 # 19,073 steps is ~1 epoch, if data is 10B tokens and batch size 0.5M tokens
+max_steps = 1173 # 19,073 steps is ~1 epoch, if data is 10B tokens and batch size 0.5M tokens
 
 def get_lr(it):
     # 1) linear warmup for warmup_iters steps
@@ -144,7 +144,8 @@ def main():
   eval_interval = 20
   val_loss_steps = 20
 
-  for i in range(1173):
+  print(f'The model will train for maximum of {max_steps}')
+  for i in range(max_steps):
       last_step = (i == max_steps - 1)
       loss_accum = 0.0
       if device == "cuda":
@@ -197,7 +198,7 @@ def main():
       with open(log_file, "a") as f:
         f.write(f"{i} train {loss_accum.item():.6f}\n")
         
-      save_interval = 100
+      save_interval = 150
 
       if i % save_interval == 0 and i > 0:
           checkpoint_path = os.path.join(log_dir, f"model_{i:05d}.pt")

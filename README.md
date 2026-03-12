@@ -167,14 +167,15 @@ The model produced the below text as inference output after 1 epoch of training.
   - max_new_tokens=150,
   - temperature=1.2,
   - top_k=50,
+  - starting prompt = 'The history of science'
 
-/////////////////
+
 The history of science @-@ century , as the player . At the first song . The song was a " The song was a " The song was " The song , who was " . " , " , with " " It was " , as " " 
 
  According to a song " The " . During the song . " 's first album " and " It 's lyrics " , a " , " The show . " I ' " and " A song " . This song " I ] , " ... was a song was " . 
 
  " The song , I 's " was her " was a song was " The song 's " . He 's album " It " and " was " The episode , " , " " I 't 's 's " I 't do the song I 's " , " The " " a best on the album 's a
-/////////////////
+
 
 ## What I Learned
 
