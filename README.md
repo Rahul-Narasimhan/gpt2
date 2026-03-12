@@ -106,13 +106,13 @@ I approached this project incrementally.
 
 2. I implemented the core building blocks step by step:
 
- - BPE tokenization
- - token embeddings
- - positional embeddings
- - attention mechanism
- - residual skip connections
- - layer normalization
- - feed-forward MLP blocks
+    - BPE tokenization
+    - token embeddings
+    - positional embeddings
+    - attention mechanism
+    - residual skip connections
+    - layer normalization
+    - feed-forward MLP blocks
 
 3. After each component was added, I tested the implementation before moving to the next piece.
 
