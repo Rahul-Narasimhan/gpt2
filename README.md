@@ -161,6 +161,16 @@ Some observations from the plots.
   - Train loss starts at around ~11 , which is expected because -ln(1/vocab_size) = -ln(1/50304) = 10.82
   - Train and Val loss remain fairly close, there is on obvious signs of overfitting
 
+## Inference Result
+The model produced the below text as inference output after 1 epoch of training. Clearly, it is not trained enough to produce proper text, but atleast there is a bit of english looking text and flow here and there, so some learning has happened.
+
+/////////////////
+The history of science @-@ century , as the player . At the first song . The song was a " The song was a " The song was " The song , who was " . " , " , with " " It was " , as " " 
+
+ According to a song " The " . During the song . " 's first album " and " It 's lyrics " , a " , " The show . " I ' " and " A song " . This song " I ] , " ... was a song was " . 
+
+ " The song , I 's " was her " was a song was " The song 's " . He 's album " It " and " was " The episode , " , " " I 't 's 's " I 't do the song I 's " , " The " " a best on the album 's a
+/////////////////
 
 ## What I Learned
 
