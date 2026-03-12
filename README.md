@@ -14,7 +14,7 @@ Some of the main ideas I wanted to understand more deeply were:
 - how decoder only transformers are assembled end to end
 - how training can be optimized for faster execution and better hardware utilization
 
-The paper "Language Models are Unsupervised Multitask Learners" GPT-2 paper was majorly referenced to build this and i tried to replicate the hyperparamter settings as much as possible and what my GPU allowed me to. 
+The GPT-2 paper, Language Models are Unsupervised Multitask Learners, was a major reference for this implementation. I tried to replicate the hyperparamter settings as much as possible and what my GPU allowed me to. 
 
 The project currently contains separate scripts for model definition, training, and sampling:
 
@@ -38,20 +38,21 @@ This project includes the following core components:
 - validation loss estimation
 - text generation from a trained model
 
-### hyperparameters
+## Training Configuration
 
 - number of layers = 12
 - number of heads  = 12
 - embedding dimension = 768
-- block size = 4
-- sequence length = 512
-- batch size = 50304
+- context length = 512
+- batch size = 4
 - optimizer = Fused AdamW
-- learning rate  = Cosine decay learning rate, max_lr = 6e-4 min_lr = 6e-5
-- total training steps = 1173 (1 epoch), with gradient accumulation for every 4 steps with 8192 tokens per optmizer update
+- learning rate schedule = cosine decay (`max_lr = 6e-4`, `min_lr = 6e-5`)
+- total training steps = 1173 (1 epoch)
+- gradient accumulation steps = 4 
+- effective batch size = 8192 tokens/update
 - hardware used = T4 GPU
 - validation steps = 20
-- validation interval = every 20 iterations
+- vvalidation interval = every 20 training steps
 
 ## Repository Structure
 
@@ -124,7 +125,7 @@ I approached this project incrementally.
 5. After completing those experiments on Tiny Shakespeare, I switched to the ~2M token corpus and trained the model further to study training behavior on a larger dataset.
 
 ## Performance Experiments
-I ran a series of controlled experiments to measure how architecture and implementation changes affected training throughput. The table below reports approximate mean step time and throughput observed from experiment logs. I logged these as and when i added/modified a component. This let me understand how some components affect the training. 
+I ran a series of controlled experiments to measure how architecture and implementation changes affected training throughput. The table below reports approximate mean step time and throughput observed from experiment logs. I logged these experiments incrementally as I modified the model and training pipeline. 
 
 To understand the runtime impact of different implementation choices, I compared several model and training configurations on CPU and Google Colab T4 GPU. The goal was to track how changes such as weight tying, initialization, `torch.compile`, Flash Attention, and optimizer configuration affected step time and token throughput.
 
