@@ -38,6 +38,21 @@ This project includes the following core components:
 - validation loss estimation
 - text generation from a trained model
 
+### hyperparameters
+
+- number of layers = 12
+- number of heads  = 12
+- embedding dimension = 768
+- block size = 4
+- sequence length = 512
+- batch size = 50304
+- optimizer = Fused AdamW
+- learning rate  = Cosine decay learning rate, max_lr = 6e-4 min_lr = 6e-5
+- total training steps = 1173 (1 epoch), with gradient accumulation for every 4 steps with 8192 tokens per optmizer update
+- hardware used = T4 GPU
+- validation steps = 20
+- validation interval = every 20 iterations
+
 ## Repository Structure
 
 ```text
@@ -86,21 +101,6 @@ next-token prediction objective
 train/validation split
 validation loss tracking during training
 generation using the trained model
-
-### hyperparameters
-
-- number of layers = 12
-- number of heads  = 12
-- embedding dimension = 768
-- block size = 4
-- sequence length = 512
-- batch size = 50304
-- optimizer = Fused AdamW
-- learning rate  = Cosine decay learning rate, max_lr = 6e-4 min_lr = 6e-5
-- total training steps = 1173 (1 epoch), with gradient accumulation for every 4 steps with 8192 tokens per optmizer update
-- hardware used = T4 GPU
-- validation steps = 20
-- validation interval = every 20 iterations
 
 ## How I Built this
 
