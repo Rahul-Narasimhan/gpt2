@@ -43,6 +43,7 @@ This project includes the following core components:
 - number of layers = 12
 - number of heads  = 12
 - embedding dimension = 768
+- vocab_size = 50304
 - context length = 512
 - batch size = 4
 - optimizer = Fused AdamW
@@ -58,10 +59,12 @@ This project includes the following core components:
 
 ```text
 gpt2/
-│
-├── gpt2_model.py      # GPT-2 style model architecture
-├── train.py      # training script
-├── output_generation.py     # text generation script
+├── assets/
+│   ├── train_loss.png
+│   └── val_loss.png
+├── gpt2_model.py
+├── train.py
+├── output_generation.py
 ├── README.md
 ├── requirements.txt
 └── .gitignore
@@ -145,15 +148,18 @@ All The experiments below was performed on the tiny shakespeare dataset with a b
 
 ### Results
 
-TBU
+After training the model for 1 epoch, with 1173 steps, here are the train and val loss curves
 
-Planned additions:
+### Train Loss
+![Train Loss](assets/train_loss.png)
 
-final training loss
-final validation loss
-loss curve plots
-training configuration summary
-example generated samples
+### Validation Loss
+![Validation Loss](assets/val_loss.png)
+
+Some observations from the plots.
+    - Train loss is noisy and high in the beginning, which is expected as the model moves from initialisation to learning phase
+    - Train loss starts at around ~11 , which is expected because -ln(1/vocab_size) = -ln(1/50304) = 10.82
+    - Train and Val loss remain fairly close, there is on obvious signs of overfitting
 
 
 ## What I Learned

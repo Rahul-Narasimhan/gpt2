@@ -34,3 +34,5 @@ datasets/
 *.parquet
 *.npy
 *.npz
+wiki.ipynb
+log_1173.txt
