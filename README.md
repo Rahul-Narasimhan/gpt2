@@ -164,6 +164,10 @@ Some observations from the plots.
 ## Inference Result
 The model produced the below text as inference output after 1 epoch of training. Clearly, it is not trained enough to produce proper text, but atleast there is a bit of english looking text and flow here and there, so some learning has happened.
 
+  - max_new_tokens=150,
+  - temperature=1.2,
+  - top_k=50,
+
 /////////////////
 The history of science @-@ century , as the player . At the first song . The song was a " The song was a " The song was " The song , who was " . " , " , with " " It was " , as " " 
 

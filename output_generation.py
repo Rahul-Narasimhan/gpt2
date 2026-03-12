@@ -6,6 +6,7 @@ import os
 from gpt2_model import GPT, GPTConfig
 
 log_dir = '/content/drive/MyDrive/gpt_2_wiki2M/log/'
+model_name = 'model_01050.pt'
 
 def generate_text(
     model,
@@ -13,8 +14,8 @@ def generate_text(
     prompt="The",
     max_new_tokens=150,
     num_return_sequences=3,
-    temperature=0.7,
-    top_k=20,
+    temperature=1.2,
+    top_k=50,
 ):
     model.eval()
 
@@ -81,29 +82,34 @@ def load_model_for_inference(checkpoint_path, device):
 
 def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"using device: {device}")
+    print(f"Using device: {device}")
 
-    checkpoint_path = os.path.join(log_dir, 'model_00099.pt')
+    checkpoint_path = os.path.join(log_dir, model_name)
     model, ckpt = load_model_for_inference(checkpoint_path, device)
-    print(f"loaded checkpoint from step {ckpt['step']}")
+    
+    step = ckpt.get('step', 'unknown')
+    print(f"Loaded checkpoint from step {step}")
 
-    print("!!!!!!!!!!!!!! Generating output !!!!!!!!!!!!!!")
+    # Store the prompt in a variable
+    user_prompt = "The history of science"
+
+    print("\n!!!!!!!!!!!!!! Generating output !!!!!!!!!!!!!!\n")
+    print(f"Starting prompt was: {user_prompt}")
+    print("-" * 30 + "\n") # Just a little extra underline for the prompt
+
     outputs = generate_text(
-    model=model,
-    device=device,
-    prompt="The history of science",
-    max_new_tokens=600,
-    num_return_sequences=5,
-    temperature=0.7,
-    top_k=50,
-  )
+        model=model,
+        device=device,
+        prompt=user_prompt,
+        max_new_tokens=600,
+        num_return_sequences=3,
+        temperature=0.7,
+        top_k=50,
+    )
 
     for i, text in enumerate(outputs):
-        print(f"\n--- Sample {i+1} ---")
         print(text)
-        print("\n[repr view]")
-        print(repr(text))
-
+        print("\n" + "*"*20 + "\n")
 
 if __name__ == "__main__":
     main()
