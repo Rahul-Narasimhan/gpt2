@@ -5,7 +5,14 @@ A from-scratch reproduction of a GPT-2 style decoder-only transformer in PyTorch
 2. WikiWeb2M - ~2 million token wikipedia based dataset
 
 ## Overview
-This is a hands on implementation of GPT-2 style language model using pytorch. I built this project to understand the GPT-style autoregressive transformers beyond high-level APIs. To name a few of the concepts that i wanted to get a deeper undestanding of, how the data is tokenized, how attention mechanism is implemented, how the entire training process can be optimized, both in terms of compute usage and faster exection. 
+This is a hands on implementation of GPT-2 style language model using pytorch. I built this project to understand the GPT-style autoregressive transformers beyond high-level APIs. 
+Some of the main ideas I wanted to understand more deeply were:
+
+- how text is tokenized with BPE
+- how causal self-attention is implemented
+- how token and positional embeddings work together
+- how decoder only transformers are assembled end to end
+- how training can be optimized for faster execution and better hardware utilization
 
 The paper "Language Models are Unsupervised Multitask Learners" GPT-2 paper was majorly referenced to build this and i tried to replicate the hyperparamter settings as much as possible and what my GPU allowed me to. 
 
@@ -33,7 +40,8 @@ This project includes the following core components:
 
 ## Repository Structure
 
-gpt2_wiki_2m/
+```text
+gpt2/
 │
 ├── gpt2_model.py      # GPT-2 style model architecture
 ├── train.py      # training script
@@ -41,6 +49,7 @@ gpt2_wiki_2m/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+``` 
 
 ## Tech Stack
 
@@ -62,7 +71,7 @@ pip install -r requirements.txt
 python train.py
 
 4. Generate text samples
-python sample.py
+python output_generation.py
 
 ## Training Setup
 
@@ -93,28 +102,31 @@ hardware used
 
 ## How I Built this
 
-1. I first reproduced the "Attention is all you need" decoder only transformer from scratch. The transformer was built step by step using the tiny shakespeare dataset. This included writing and assembling the various blocks of the transformer in the order of
- -> BPE tokenization
- -> Token Embeddings
- -> Positional Embeddings
- -> Attention Mechanism
- -> Residual skip connections
- -> Layer Norm
- -> Feed forward MLP block
+I approached this project incrementally. 
+1. I first built a decoder-only transformer from scratch using the Tiny Shakespeare dataset.
 
- 2. Every component mentioned above was written and implemented from scratch in python. I add a component, check if the code works and add the next one and repeat. 
+2. I implemented the core building blocks step by step:
 
- 3. Once the skeletal tranformer architecture was implemented, i proceeded to implement the various optimizations that the GPT2 paper proposed and logged the experiments.
+• BPE tokenization
+• token embeddings
+• positional embeddings
+• attention mechanism
+• residual skip connections
+• layer normalization
+• feed-forward MLP blocks
 
- 4. Once all the optimization experiments were completed, i changed the 330K tiny shakespeare dataset to that of the 2M tokens Wiki dataset and trained the model for 1 epoch and the loss curves can be seen below
+3. After each component was added, I tested the implementation before moving to the next piece.
 
+4. Once the base transformer was working, I began implementing and testing several GPT-2 style optimizations and logged the experimental results.
 
- ## Performance Experiments
- I ran a series of controlled experiments to measure how architecture and implementation changes affected training throughput. The table below reports approximate mean step time and throughput observed from experiment logs. I logged these as and when i added/modified a component. This let me understand how some components affect the training. 
+5. After completing those experiments on Tiny Shakespeare, I switched to the ~2M token corpus and trained the model further to study training behavior on a larger dataset.
 
- To understand the runtime impact of different implementation choices, I compared several model and training configurations on CPU and Google Colab T4 GPU. The goal was to track how changes such as weight tying, initialization, `torch.compile`, Flash Attention, and optimizer configuration affected step time and token throughput.
+## Performance Experiments
+I ran a series of controlled experiments to measure how architecture and implementation changes affected training throughput. The table below reports approximate mean step time and throughput observed from experiment logs. I logged these as and when i added/modified a component. This let me understand how some components affect the training. 
 
- All The experiments below was performed on the tiny shakespeare dataset with a batch_size = 4, sequence_length = 32. I understand that this is very naive and is not a rigorous or a proper experimentation setup, but the idea was to just understand the core concepts.
+To understand the runtime impact of different implementation choices, I compared several model and training configurations on CPU and Google Colab T4 GPU. The goal was to track how changes such as weight tying, initialization, `torch.compile`, Flash Attention, and optimizer configuration affected step time and token throughput.
+
+All The experiments below was performed on the tiny shakespeare dataset with a batch_size = 4, sequence_length = 32. I understand that this is very naive and is not a rigorous or a proper experimentation setup, but the idea was to just understand the core concepts.
 
  | Experiment | Device | Mean step time (ms) | Mean tokens/sec | Notes |
 |---|---:|---:|---:|---|
