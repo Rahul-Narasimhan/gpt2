@@ -89,15 +89,18 @@ generation using the trained model
 
 ### hyperparameters
 
-number of layers
-number of heads
-embedding dimension
-block size
-batch size
-optimizer
-learning rate
-total training steps
-hardware used
+- number of layers = 12
+- number of heads  = 12
+- embedding dimension = 768
+- block size = 4
+- sequence length = 512
+- batch size = 50304
+- optimizer = Fused AdamW
+- learning rate  = Cosine decay learning rate, max_lr = 6e-4 min_lr = 6e-5
+- total training steps = 1173 (1 epoch), with gradient accumulation for every 4 steps with 8192 tokens per optmizer update
+- hardware used = T4 GPU
+- validation steps = 20
+- validation interval = every 20 iterations
 
 ## How I Built this
 
@@ -165,11 +168,8 @@ how to move from conceptual understanding to working PyTorch implementation
 
 ## Next Steps
 
-add checkpoint saving and loading
-improve logging and experiment tracking
-add training and validation loss curves to the README
-make hyperparameters configurable
-train on a larger dataset
-compare outputs across different training runs
-improve generation quality and sampling controls
+Improve logging and experiment tracking
+Train on a larger dataset and understand better how hyperparamters interact with each other, not only about hyperparameters at the surface level like vocab_size, batch, but also hyperparamters of AdamW and so on.
+Compare outputs across different training runs
+Improve generation quality and sampling controls
 
